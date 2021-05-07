@@ -4,7 +4,7 @@
   <id>/</id>
   <title>Krishnanand Sivaraj</title>
   <subtitle></subtitle>
-  <updated>2021-05-07T21:15:41+08:00</updated>
+  <updated>2021-05-08T03:46:16+08:00</updated>
   <author>
     <name>krishnanand_sivaraj</name>
     <uri>/</uri>
@@ -29,7 +29,7 @@
     <id>/posts/ooad-intro/</id>
     <content src="/posts/ooad-intro/" />
     <author>
-      <name>Cotes Chung</name>
+      <name>Krishnanand Sivaraj</name>
     </author>
 
   
@@ -48,10 +48,9 @@
 
 
 
-      What is Head First Object Oriented Analysis and Design all about?
+      Head First Object Oriented Analysis and Design
 
-Follow the Jekyll Docs to complete the installation of Ruby, RubyGems, Jekyll and Bundler.
-
+As software professionals we always create and maintain software every day.  Some codebases are easy for everyone to work with and add new features, but some are not.  What if there is a standard way to solve all these problems with an approach?  The authors of headfirst series wrote this book to analyze and design a software with object oriented ...
     </summary>
   
 
