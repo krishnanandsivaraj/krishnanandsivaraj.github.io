@@ -4,6 +4,8 @@
 
 <html lang="en-US" 
   
+    mode="dark"
+  
 >
 
   <!--
@@ -20,6 +22,8 @@
 <meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Design" />
 <meta property="og:locale" content="en_US" />
+<meta name="description" content="Software, books and the world around me. Thoughts are my own." />
+<meta property="og:description" content="Software, books and the world around me. Thoughts are my own." />
 <link rel="canonical" href="/categories/design/" />
 <meta property="og:url" content="/categories/design/" />
 <meta property="og:site_name" content="Krishnanand Sivaraj" />
@@ -28,7 +32,7 @@
 <meta name="twitter:site" content="@krishnanandsiva" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"url":"/categories/design/","headline":"Design","@type":"WebPage","@context":"https://schema.org"}</script>
+{"url":"/categories/design/","@type":"WebPage","description":"Software, books and the world around me. Thoughts are my own.","headline":"Design","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -130,7 +134,7 @@
       <a href="/">Krishnanand Sivaraj</a>
     </div>
 
-    <div class="site-subtitle font-italic">My thoughts and learnings at work</div>
+    <div class="site-subtitle font-italic">software, books and the world around me</div>
 
   </div><!-- .profile-wrapper -->
 
@@ -182,7 +186,7 @@
 
       
       <a href="https://github.com/krishnanandsivaraj" aria-label="github"
-        class="order-3"
+        
         target="_blank" rel="noopener">
         <i class="fab fa-github-alt"></i>
       </a>
@@ -193,7 +197,7 @@
 
       
       <a href="https://twitter.com/krishnanandsiva" aria-label="twitter"
-        class="order-4"
+        
         target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
@@ -205,7 +209,7 @@
       
       <a href="
           javascript:location.href = 'mailto:' + ['',''].join('@')" aria-label="email"
-        class="order-5"
+        
         >
         <i class="fas fa-envelope"></i>
       </a>
@@ -216,7 +220,7 @@
 
       
       <a href="/feed.xml" aria-label="rss"
-        class="order-6"
+        
         >
         <i class="fas fa-rss"></i>
       </a>
@@ -224,159 +228,6 @@
 
     
 
-    
-      
-        <span class="icon-border order-2"></span>
-      
-
-      <span id="mode-toggle-wrapper" class="order-1">
-        <!--
-  Switch the mode between dark and light.
--->
-
-<i class="mode-toggle fas fa-adjust"></i>
-
-<script type="text/javascript">
-
-  class ModeToggle {
-    static get MODE_KEY() { return "mode"; }
-    static get DARK_MODE() { return "dark"; }
-    static get LIGHT_MODE() { return "light"; }
-
-    constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
-
-      var self = this;
-
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addListener(function() {
-        if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
-          self.clearMode();
-        }
-
-        self.updateMermaid();
-      });
-
-    } /* constructor() */
-
-
-    setDark() {
-      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-    }
-
-    setLight() {
-      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-    }
-
-    clearMode() {
-      $('html').removeAttr(ModeToggle.MODE_KEY);
-      sessionStorage.removeItem(ModeToggle.MODE_KEY);
-    }
-
-    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
-
-    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
-
-    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
-
-    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
-
-    get hasMode() { return this.mode != null; }
-
-    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
-
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode
-        || (!this.hasMode && this.isSysDarkPrefer) ) {
-        return ModeToggle.DARK_MODE;
-      } else {
-        return ModeToggle.LIGHT_MODE;
-      }
-    }
-
-    updateMermaid() {
-      if (typeof mermaid !== "undefined") {
-        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
-        let config = { theme: expectedTheme };
-
-        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
-        $(".mermaid").each(function() {
-          let svgCode = $(this).prev().children().html();
-          $(this).removeAttr("data-processed");
-          $(this).html(svgCode);
-        });
-
-        mermaid.initialize(config);
-        mermaid.init(undefined, ".mermaid");
-      }
-    }
-
-    flipMode() {
-      if (this.hasMode) {
-        if (this.isSysDarkPrefer) {
-          if (this.isLightMode) {
-            this.clearMode();
-          } else {
-            this.setLight();
-          }
-
-        } else {
-          if (this.isDarkMode) {
-            this.clearMode();
-          } else {
-            this.setDark();
-          }
-        }
-
-      } else {
-        if (this.isSysDarkPrefer) {
-          this.setLight();
-        } else {
-          this.setDark();
-        }
-      }
-
-      this.updateMermaid();
-
-    } /* flipMode() */
-
-  } /* ModeToggle */
-
-  let toggle = new ModeToggle();
-
-  $(".mode-toggle").click(function() {
-
-    toggle.flipMode();
-
-  });
-
-</script>
-
-      </span>
     
 
   </div> <!-- .sidebar-bottom -->
@@ -488,7 +339,7 @@
   <h1 class="pl-lg-2">
     <i class="far fa-folder-open fa-fw text-muted"></i>
     Design
-    <span class="lead text-muted pl-2">1</span>
+    <span class="lead text-muted pl-2">9</span>
   </h1>
 
   <ul class="post-content pl-0">
@@ -496,7 +347,55 @@
 
     
     <li class="d-flex justify-content-between pl-md-3 pr-md-3">
-      <a href="/posts/ooad-intro/">OOAD Introduction</a>
+      <a href="/posts/iteration-and-testing/">Chapter 8 - Iterating and testing</a>
+      <span class="dash flex-grow-1"></span>
+      <span class="text-muted small">May  8, 2021</span>
+    </li>
+    
+    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+      <a href="/posts/design-principles/">Chapter 7 - Design Principles</a>
+      <span class="dash flex-grow-1"></span>
+      <span class="text-muted small">May  8, 2021</span>
+    </li>
+    
+    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+      <a href="/posts/architecture/">Chapter 6 - Architecture</a>
+      <span class="dash flex-grow-1"></span>
+      <span class="text-muted small">May  8, 2021</span>
+    </li>
+    
+    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+      <a href="/posts/solving-big-problems/">Chapter 5 - Solving really big problem</a>
+      <span class="dash flex-grow-1"></span>
+      <span class="text-muted small">May  8, 2021</span>
+    </li>
+    
+    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+      <a href="/posts/requirements-change-copy/">Chapter 3 - Requirements change</a>
+      <span class="dash flex-grow-1"></span>
+      <span class="text-muted small">May  7, 2021</span>
+    </li>
+    
+    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+      <a href="/posts/analysis/">Chapter 4 - Analysis and Design</a>
+      <span class="dash flex-grow-1"></span>
+      <span class="text-muted small">May  7, 2021</span>
+    </li>
+    
+    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+      <a href="/posts/how-to-wrt-grt-software/">Chapter 1 - How to write great software</a>
+      <span class="dash flex-grow-1"></span>
+      <span class="text-muted small">May  6, 2021</span>
+    </li>
+    
+    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+      <a href="/posts/gathering-requirements-copy/">Chapter 2 - Gathering Requirements</a>
+      <span class="dash flex-grow-1"></span>
+      <span class="text-muted small">May  6, 2021</span>
+    </li>
+    
+    <li class="d-flex justify-content-between pl-md-3 pr-md-3">
+      <a href="/posts/ooad-intro/">Chapter 0 - OOA&D Introduction</a>
       <span class="dash flex-grow-1"></span>
       <span class="text-muted small">May  5, 2021</span>
     </li>

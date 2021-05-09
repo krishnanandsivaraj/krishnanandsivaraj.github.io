@@ -4,6 +4,8 @@
 
 <html lang="en-US" 
   
+    mode="dark"
+  
 >
 
   <!--
@@ -26,6 +28,8 @@
 <meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Krishnanand Sivaraj" />
 <meta property="og:locale" content="en_US" />
+<meta name="description" content="Software, books and the world around me. Thoughts are my own." />
+<meta property="og:description" content="Software, books and the world around me. Thoughts are my own." />
 <link rel="canonical" href="/" />
 <meta property="og:url" content="/" />
 <meta property="og:site_name" content="Krishnanand Sivaraj" />
@@ -34,7 +38,7 @@
 <meta name="twitter:site" content="@krishnanandsiva" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"url":"/","headline":"Krishnanand Sivaraj","@type":"WebSite","sameAs":["https://twitter.com/krishnanandsiva","https://github.com/krishnanandsivaraj"],"name":"krishnanand_sivaraj","@context":"https://schema.org"}</script>
+{"url":"/","@type":"WebSite","description":"Software, books and the world around me. Thoughts are my own.","headline":"Krishnanand Sivaraj","sameAs":["https://twitter.com/krishnanandsiva","https://github.com/krishnanandsivaraj"],"name":"krishnanand_sivaraj","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -138,7 +142,7 @@
       <a href="/">Krishnanand Sivaraj</a>
     </div>
 
-    <div class="site-subtitle font-italic">My thoughts and learnings at work</div>
+    <div class="site-subtitle font-italic">software, books and the world around me</div>
 
   </div><!-- .profile-wrapper -->
 
@@ -190,7 +194,7 @@
 
       
       <a href="https://github.com/krishnanandsivaraj" aria-label="github"
-        class="order-3"
+        
         target="_blank" rel="noopener">
         <i class="fab fa-github-alt"></i>
       </a>
@@ -201,7 +205,7 @@
 
       
       <a href="https://twitter.com/krishnanandsiva" aria-label="twitter"
-        class="order-4"
+        
         target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
@@ -213,7 +217,7 @@
       
       <a href="
           javascript:location.href = 'mailto:' + ['',''].join('@')" aria-label="email"
-        class="order-5"
+        
         >
         <i class="fas fa-envelope"></i>
       </a>
@@ -224,7 +228,7 @@
 
       
       <a href="/feed.xml" aria-label="rss"
-        class="order-6"
+        
         >
         <i class="fas fa-rss"></i>
       </a>
@@ -232,159 +236,6 @@
 
     
 
-    
-      
-        <span class="icon-border order-2"></span>
-      
-
-      <span id="mode-toggle-wrapper" class="order-1">
-        <!--
-  Switch the mode between dark and light.
--->
-
-<i class="mode-toggle fas fa-adjust"></i>
-
-<script type="text/javascript">
-
-  class ModeToggle {
-    static get MODE_KEY() { return "mode"; }
-    static get DARK_MODE() { return "dark"; }
-    static get LIGHT_MODE() { return "light"; }
-
-    constructor() {
-      if (this.hasMode) {
-        if (this.isDarkMode) {
-          if (!this.isSysDarkPrefer) {
-            this.setDark();
-          }
-        } else {
-          if (this.isSysDarkPrefer) {
-            this.setLight();
-          }
-        }
-      }
-
-      var self = this;
-
-      /* always follow the system prefers */
-      this.sysDarkPrefers.addListener(function() {
-        if (self.hasMode) {
-          if (self.isDarkMode) {
-            if (!self.isSysDarkPrefer) {
-              self.setDark();
-            }
-
-          } else {
-            if (self.isSysDarkPrefer) {
-              self.setLight();
-            }
-          }
-
-          self.clearMode();
-        }
-
-        self.updateMermaid();
-      });
-
-    } /* constructor() */
-
-
-    setDark() {
-      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
-    }
-
-    setLight() {
-      $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
-    }
-
-    clearMode() {
-      $('html').removeAttr(ModeToggle.MODE_KEY);
-      sessionStorage.removeItem(ModeToggle.MODE_KEY);
-    }
-
-    get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); }
-
-    get isSysDarkPrefer() { return this.sysDarkPrefers.matches; }
-
-    get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; }
-
-    get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; }
-
-    get hasMode() { return this.mode != null; }
-
-    get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); }
-
-    /* get the current mode on screen */
-    get modeStatus() {
-      if (this.isDarkMode
-        || (!this.hasMode && this.isSysDarkPrefer) ) {
-        return ModeToggle.DARK_MODE;
-      } else {
-        return ModeToggle.LIGHT_MODE;
-      }
-    }
-
-    updateMermaid() {
-      if (typeof mermaid !== "undefined") {
-        let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default");
-        let config = { theme: expectedTheme };
-
-        /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */
-        $(".mermaid").each(function() {
-          let svgCode = $(this).prev().children().html();
-          $(this).removeAttr("data-processed");
-          $(this).html(svgCode);
-        });
-
-        mermaid.initialize(config);
-        mermaid.init(undefined, ".mermaid");
-      }
-    }
-
-    flipMode() {
-      if (this.hasMode) {
-        if (this.isSysDarkPrefer) {
-          if (this.isLightMode) {
-            this.clearMode();
-          } else {
-            this.setLight();
-          }
-
-        } else {
-          if (this.isDarkMode) {
-            this.clearMode();
-          } else {
-            this.setDark();
-          }
-        }
-
-      } else {
-        if (this.isSysDarkPrefer) {
-          this.setLight();
-        } else {
-          this.setDark();
-        }
-      }
-
-      this.updateMermaid();
-
-    } /* flipMode() */
-
-  } /* ModeToggle */
-
-  let toggle = new ModeToggle();
-
-  $(".mode-toggle").click(function() {
-
-    toggle.flipMode();
-
-  });
-
-</script>
-
-      </span>
     
 
   </div> <!-- .sidebar-bottom -->
@@ -490,7 +341,7 @@
 
   <div class="post-preview">
     <h1>
-      <a href="/posts/ooad-intro/">OOAD Introduction</a>
+      <a href="/posts/ooad-intro/">Chapter 0 - OOA&D Introduction</a>
     </h1>
 
     <div class="post-content">
@@ -503,7 +354,7 @@
 
         Head First Object Oriented Analysis and Design
 
-As software professionals we always create and maintain software every day.  Some codebases are easy for everyone to work with and add new features, ...
+As software professionals we always create and maintain software every day.  Some codebases are easy for everyone to work with, add new features, but...
       </p>
     </div>
 
@@ -559,7 +410,7 @@ As software professionals we always create and maintain software every day.  Som
 
 
 <!-- return element -->
-<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="129 words">1 min</span>
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="127 words">1 min</span>
 
 
         <!-- page views -->
@@ -571,6 +422,722 @@ As software professionals we always create and maintain software every day.  Som
         <i class="fas fa-thumbtack fa-fw"></i>
         <span>Pinned</span>
       </div>
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/iteration-and-testing/">Chapter 8 - Iterating and testing</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Chapter 8 - Iterating and testing
+
+
+  The first step in writing good software is to make sure your application works like the customer expects and wants it to.
+  Customers don’t usually care about ...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, May  8, 2021, 11:15 PM +0800"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  8
+  
+
+  <i class="unloaded">2021-05-08T23:15:00+08:00</i>
+
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="331 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/design-principles/">Chapter 7 - Design Principles</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Chapter 7 : Design Principles
+
+
+  The Open-Closed Principle keeps your software reusable, but still flexible, by keeping classes open for extension but closed for modification.
+  With classes doing...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, May  8, 2021, 11:05 PM +0800"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  8
+  
+
+  <i class="unloaded">2021-05-08T23:05:00+08:00</i>
+
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="260 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/architecture/">Chapter 6 - Architecture</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Chapter 6 : Architecture
+
+
+  Architecture helps you turn all your diagrams, plans and feature lists into well-ordered application.
+  The features in your system that are most important to your proj...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, May  8, 2021,  9:55 PM +0800"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  8
+  
+
+  <i class="unloaded">2021-05-08T21:55:00+08:00</i>
+
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="122 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/solving-big-problems/">Chapter 5 - Solving really big problem</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Chapter 5 : Solving really big problem
+
+
+  You solve big problems the way you solve small problems.
+  The best way to look at a big problem is to see it as lots of individual pieces of functionalit...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sat, May  8, 2021,  8:55 PM +0800"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  8
+  
+
+  <i class="unloaded">2021-05-08T20:55:00+08:00</i>
+
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="282 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/requirements-change-copy/">Chapter 3 - Requirements change</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Chapter 3 : Requirements change
+
+
+
+  A complete path through a usecase from the first step to the last is called a scenario.
+
+
+
+  Most usecases have several different scenarios but they always shar...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, May  7, 2021,  8:55 PM +0800"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  7
+  
+
+  <i class="unloaded">2021-05-07T20:55:00+08:00</i>
+
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="123 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/analysis/">Chapter 4 - Analysis and Design</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Chapter 4 : Analysis and Design
+
+
+
+  Analysis helps your system work in a real-world context.
+
+
+
+  Pay attention to the nouns in the usecase.  Those are the classes you need to write and focus on i...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Fri, May  7, 2021,  8:55 PM +0800"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  7
+  
+
+  <i class="unloaded">2021-05-07T20:55:00+08:00</i>
+
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="285 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/how-to-wrt-grt-software/">Chapter 1 - How to write great software</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Chapter 1 : How to write great software
+
+There are 3 rules to say a software is good
+
+
+  Rule # 1 : win your customer by coding the software on what it is supposed to do.
+  Rule # 2 : Great softwar...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, May  6, 2021,  8:55 PM +0800"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  6
+  
+
+  <i class="unloaded">2021-05-06T20:55:00+08:00</i>
+
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="208 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
+      
+
+    </div> <!-- .post-meta -->
+
+  </div> <!-- .post-review -->
+
+
+
+  <div class="post-preview">
+    <h1>
+      <a href="/posts/gathering-requirements-copy/">Chapter 2 - Gathering Requirements</a>
+    </h1>
+
+    <div class="post-content">
+      <p>
+        
+
+
+
+
+
+        Chapter 2 : Gathering Requirements
+
+In the previous chapter, the author insists winning the customer is the most important part of good software.
+
+
+
+  How do you figure out what the customer really...
+      </p>
+    </div>
+
+    <div class="post-meta text-muted d-flex justify-content-between">
+
+      <div>
+        <!-- posted date -->
+        <i class="far fa-calendar fa-fw"></i>
+        <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Thu, May  6, 2021,  6:55 PM +0800"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  6
+  
+
+  <i class="unloaded">2021-05-06T18:55:00+08:00</i>
+
+</span>
+
+
+        <!-- time to read -->
+        <i class="far fa-clock fa-fw"></i>
+        <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="208 words">1 min</span>
+
+
+        <!-- page views -->
+        
+      </div>
+
       
 
     </div> <!-- .post-meta -->
