@@ -11,10 +11,6 @@ pin: true
 
 As software professionals we always create and maintain software every day.  Some codebases are easy for everyone to work with, add new features, but some are not.  What if there is a standard way to solve all these problems with an approach?  The authors of headfirst series wrote this book to *analyze and design a software with object oriented principles*.
 
-### Target Audience
-
-An experienced senior developer (or above) in a product firm, may not find this book interesting.  This book will entertain mid-level developers to write better software, ask meaningful questions during their software development.
-
 ### Topics
 
 - [How to write great software](../how-to-wrt-grt-software)
