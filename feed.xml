@@ -1,33 +1,76 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>/</id>
+  <id>http://localhost:4000/</id>
   <title>Krishnanand Sivaraj</title>
   <subtitle>Software, books and the world around me. Thoughts are my own.</subtitle>
-  <updated>2021-05-09T15:16:23+08:00</updated>
+  <updated>2023-04-09T20:34:14+08:00</updated>
   <author>
     <name>krishnanand_sivaraj</name>
-    <uri>/</uri>
+    <uri>http://localhost:4000/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="/feed.xml"/>
+  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en-US"
-    href="/"/>
-  <generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator>
-  <rights> © 2021 krishnanand_sivaraj </rights>
+    href="http://localhost:4000/"/>
+  <generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator>
+  <rights> © 2023 krishnanand_sivaraj </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
 
   
   <entry>
+    <title>Some Learnings on types</title>
+    <link href="http://localhost:4000/posts/better-ts-types/" rel="alternate" type="text/html" title="Some Learnings on types" />
+    <published>2023-04-09T00:55:00+08:00</published>
+  
+    <updated>2023-04-09T00:55:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/better-ts-types/</id>
+    <content src="http://localhost:4000/posts/better-ts-types/" />
+    <author>
+      <name>Krishnanand Sivaraj</name>
+    </author>
+
+  
+    
+    <category term="typescript" />
+    
+    <category term="refactoring" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Playing with custom types
+
+Apart from the primitive types offered by types, we have the flexibility to create our own types in TS.  While it has its benefits I found out few concepts that will better our usage.
+
+Use custom types wisely with optional and never types
+While developing applications that use Typescript it is mostly essential to perform database queries or parse external api.
+
+  The ...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>Chapter 8 - Iterating and testing</title>
-    <link href="/posts/iteration-and-testing/" rel="alternate" type="text/html" title="Chapter 8 - Iterating and testing" />
+    <link href="http://localhost:4000/posts/iteration-and-testing/" rel="alternate" type="text/html" title="Chapter 8 - Iterating and testing" />
     <published>2021-05-08T23:15:00+08:00</published>
   
     <updated>2021-05-08T23:15:00+08:00</updated>
   
-    <id>/posts/iteration-and-testing/</id>
-    <content src="/posts/iteration-and-testing/" />
+    <id>http://localhost:4000/posts/iteration-and-testing/</id>
+    <content src="http://localhost:4000/posts/iteration-and-testing/" />
     <author>
       <name>Krishnanand Sivaraj</name>
     </author>
@@ -63,13 +106,13 @@
   
   <entry>
     <title>Chapter 7 - Design Principles</title>
-    <link href="/posts/design-principles/" rel="alternate" type="text/html" title="Chapter 7 - Design Principles" />
+    <link href="http://localhost:4000/posts/design-principles/" rel="alternate" type="text/html" title="Chapter 7 - Design Principles" />
     <published>2021-05-08T23:05:00+08:00</published>
   
     <updated>2021-05-08T23:05:00+08:00</updated>
   
-    <id>/posts/design-principles/</id>
-    <content src="/posts/design-principles/" />
+    <id>http://localhost:4000/posts/design-principles/</id>
+    <content src="http://localhost:4000/posts/design-principles/" />
     <author>
       <name>Krishnanand Sivaraj</name>
     </author>
@@ -104,13 +147,13 @@
   
   <entry>
     <title>Chapter 6 - Architecture</title>
-    <link href="/posts/architecture/" rel="alternate" type="text/html" title="Chapter 6 - Architecture" />
+    <link href="http://localhost:4000/posts/architecture/" rel="alternate" type="text/html" title="Chapter 6 - Architecture" />
     <published>2021-05-08T21:55:00+08:00</published>
   
     <updated>2021-05-08T21:55:00+08:00</updated>
   
-    <id>/posts/architecture/</id>
-    <content src="/posts/architecture/" />
+    <id>http://localhost:4000/posts/architecture/</id>
+    <content src="http://localhost:4000/posts/architecture/" />
     <author>
       <name>Krishnanand Sivaraj</name>
     </author>
@@ -146,13 +189,13 @@
   
   <entry>
     <title>Chapter 5 - Solving really big problem</title>
-    <link href="/posts/solving-big-problems/" rel="alternate" type="text/html" title="Chapter 5 - Solving really big problem" />
+    <link href="http://localhost:4000/posts/solving-big-problems/" rel="alternate" type="text/html" title="Chapter 5 - Solving really big problem" />
     <published>2021-05-08T20:55:00+08:00</published>
   
     <updated>2021-05-08T20:55:00+08:00</updated>
   
-    <id>/posts/solving-big-problems/</id>
-    <content src="/posts/solving-big-problems/" />
+    <id>http://localhost:4000/posts/solving-big-problems/</id>
+    <content src="http://localhost:4000/posts/solving-big-problems/" />
     <author>
       <name>Krishnanand Sivaraj</name>
     </author>
@@ -183,59 +226,6 @@
     
       commanity : figure out what the system is like
 ...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>Chapter 3 - Requirements change</title>
-    <link href="/posts/requirements-change-copy/" rel="alternate" type="text/html" title="Chapter 3 - Requirements change" />
-    <published>2021-05-07T20:55:00+08:00</published>
-  
-    <updated>2021-05-07T20:55:00+08:00</updated>
-  
-    <id>/posts/requirements-change-copy/</id>
-    <content src="/posts/requirements-change-copy/" />
-    <author>
-      <name>Krishnanand Sivaraj</name>
-    </author>
-
-  
-    
-    <category term="Design" />
-    
-    <category term="Architecture" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      Chapter 3 : Requirements change
-
-
-
-  A complete path through a usecase from the first step to the last is called a scenario.
-
-
-
-  Most usecases have several different scenarios but they always share the same goal.
-
-
-
-Summary / Takeaways
-
-
-  Requirements will always change as a project progresses.
-  When requirement changes, your system has to evolve to handle new requirements.
-  When your syste...
     </summary>
   
 
