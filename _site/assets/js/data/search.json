@@ -1,0 +1,139 @@
+[
+  
+  {
+    "title": "Chapter 8 - Iterating and testing",
+    "url": "/posts/iteration-and-testing/",
+    "categories": "Design, Architecture",
+    "tags": "ooad",
+    "date": "2021-05-08 23:15:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Chapter 8 - Iterating and testing  The first step in writing good software is to make sure your application works like the customer expects and wants it to.  Customers don’t usually care about diagrams and lists.  They want to see your software actually do something.  Use case driven development ..."
+  },
+  
+  {
+    "title": "Chapter 7 - Design Principles",
+    "url": "/posts/design-principles/",
+    "categories": "Design, Architecture",
+    "tags": "ooad",
+    "date": "2021-05-08 23:05:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Chapter 7 : Design Principles  The Open-Closed Principle keeps your software reusable, but still flexible, by keeping classes open for extension but closed for modification.  With classes doing one single thing through the SRP, it is even easier to apply the OCP to your code.  When you’re trying ..."
+  },
+  
+  {
+    "title": "Chapter 6 - Architecture",
+    "url": "/posts/architecture/",
+    "categories": "Design, Architecture",
+    "tags": "ooad",
+    "date": "2021-05-08 21:55:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Chapter 6 : Architecture  Architecture helps you turn all your diagrams, plans and feature lists into well-ordered application.  The features in your system that are most important to your project are architecture significant.  Focus on features that are essence of the system, that you’re unsure ..."
+  },
+  
+  {
+    "title": "Chapter 5 - Solving really big problem",
+    "url": "/posts/solving-big-problems/",
+    "categories": "Design, Architecture",
+    "tags": "ooad",
+    "date": "2021-05-08 20:55:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Chapter 5 : Solving really big problem  You solve big problems the way you solve small problems.  The best way to look at a big problem is to see it as lots of individual pieces of functionality.  You can treat each of these problems as individual problem or solve and apply the things you already..."
+  },
+  
+  {
+    "title": "Chapter 3 - Requirements change",
+    "url": "/posts/requirements-change-copy/",
+    "categories": "Design, Architecture",
+    "tags": "ooad",
+    "date": "2021-05-07 20:55:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Chapter 3 : Requirements change  A complete path through a usecase from the first step to the last is called a scenario.  Most usecases have several different scenarios but they always share the same goal.Summary / Takeaways  Requirements will always change as a project progresses.  When requirem..."
+  },
+  
+  {
+    "title": "Chapter 4 - Analysis and Design",
+    "url": "/posts/analysis/",
+    "categories": "Design, Architecture",
+    "tags": "ooad",
+    "date": "2021-05-07 20:55:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Chapter 4 : Analysis and Design  Analysis helps your system work in a real-world context.  Pay attention to the nouns in the usecase.  Those are the classes you need to write and focus on in your system.  Class diagrams give you and easy way to show your system and its code constructs from 10000 ..."
+  },
+  
+  {
+    "title": "Chapter 1 - How to write great software",
+    "url": "/posts/how-to-wrt-grt-software/",
+    "categories": "Design, Architecture",
+    "tags": "ooad",
+    "date": "2021-05-06 20:55:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Chapter 1 : How to write great softwareThere are 3 rules to say a software is good  Rule # 1 : win your customer by coding the software on what it is supposed to do.  Rule # 2 : Great software is well-designed (using OO principles), well-coded and easy to maintain, reuse (using design patterns) a..."
+  },
+  
+  {
+    "title": "Chapter 2 - Gathering Requirements",
+    "url": "/posts/gathering-requirements-copy/",
+    "categories": "Design, Architecture",
+    "tags": "ooad",
+    "date": "2021-05-06 18:55:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Chapter 2 : Gathering RequirementsIn the previous chapter, the author insists winning the customer is the most important part of good software.  How do you figure out what the customer really wants? [or] how do we make sure even the customer knows what they want.  That is where requirements come ..."
+  },
+  
+  {
+    "title": "Chapter 0 - OOA&amp;D Introduction",
+    "url": "/posts/ooad-intro/",
+    "categories": "Design, Architecture",
+    "tags": "ooad",
+    "date": "2021-05-05 20:55:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Head First Object Oriented Analysis and DesignAs software professionals we always create and maintain software every day.  Some codebases are easy for everyone to work with, add new features, but some are not.  What if there is a standard way to solve all these problems with an approach?  The aut..."
+  }
+  
+]
+
