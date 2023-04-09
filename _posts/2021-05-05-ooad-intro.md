@@ -4,7 +4,7 @@ author: Krishnanand Sivaraj
 date: 2021-05-05 20:55:00 +0800
 categories: [Design, Architecture]
 tags: [ooad]
-pin: true
+pin: false
 ---
 
 ## Head First Object Oriented Analysis and Design

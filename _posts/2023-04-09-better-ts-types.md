@@ -1,9 +1,9 @@
 ---
 title: Some Learnings on types
 author: Krishnanand Sivaraj
-date: 2023-04-09 20:55:00 +0800
-categories: [Typescript, Refactoring]
-tags: [Typescript]
+date: 2023-04-09 00:55:00 +0800
+categories: [typescript, refactoring]
+tags: [typescript]
 pin: false
 ---
 

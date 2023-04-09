@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "Some Learnings on types",
+    "url": "/posts/better-ts-types/",
+    "categories": "typescript, refactoring",
+    "tags": "typescript",
+    "date": "2023-04-09 00:55:00 +0800",
+    
+
+
+
+
+
+    "snippet": "Playing with custom typesApart from the primitive types offered by types, we have the flexibility to create our own types in TS.  While it has its benefits I found out few concepts that will better our usage.Use custom types wisely with optional and never typesWhile developing applications that u..."
+  },
+  
+  {
     "title": "Chapter 8 - Iterating and testing",
     "url": "/posts/iteration-and-testing/",
     "categories": "Design, Architecture",

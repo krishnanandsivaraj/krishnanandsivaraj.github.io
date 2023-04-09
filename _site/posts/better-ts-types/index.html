@@ -1,0 +1,849 @@
+<div class="row">
+
+  <div id="post-wrapper" class="col-12 col-lg-11 col-xl-8">
+
+    <div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+      <h1 data-toc-skip>Some Learnings on types</h1>
+
+      <div class="post-meta text-muted d-flex flex-column">
+        <!-- Published date and author -->
+        <div>
+          <span class="semi-bold">
+            Krishnanand Sivaraj
+          </span>
+          <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago "
+  
+    data-toggle="tooltip"
+    data-placement="bottom"
+    title="Sun, Apr  9, 2023, 12:55 AM +0800"
+  
+
+  
+  prep="on" >
+
+  
+  
+
+  
+    Apr  9
+  
+
+  <i class="unloaded">2023-04-09T00:55:00+08:00</i>
+
+</span>
+
+        </div>
+
+        <div>
+          <!-- lastmod -->
+          
+
+          <!-- read time -->
+          <!--
+  Calculate the post's reading time, and display the word count in tooltip
+ -->
+
+
+<!-- words per minute  -->
+
+
+
+
+
+
+
+<!-- return element -->
+<span class="readtime" data-toggle="tooltip" data-placement="bottom" title="453 words">2 min</span>
+
+
+          <!-- page views -->
+          
+
+        </div>
+
+      </div> <!-- .post-meta -->
+
+      <div class="post-content">
+
+        
+
+        <h2 id="playing-with-custom-types">Playing with custom types</h2>
+
+<p>Apart from the primitive types offered by types, we have the flexibility to create our own types in TS.  While it has its benefits I found out few concepts that will better our usage.</p>
+
+<p><strong>Use custom types wisely with optional and never types</strong>
+While developing applications that use Typescript it is mostly essential to perform database queries or parse external api.</p>
+<blockquote>
+  <p>The result of these operations are either a success or an error.</p>
+</blockquote>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nf">getApiResponse</span><span class="p">()</span> <span class="p">:</span> <span class="nx">Response</span> <span class="o">|</span> <span class="kc">null</span> <span class="p">{</span>
+		<span class="k">try</span> <span class="p">{</span>
+			<span class="c1">// code block to call an api and get response</span>
+			<span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+		<span class="p">}</span> <span class="nf">catch </span><span class="p">(</span><span class="nx">ex</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// throw exception or log exception</span>
+		<span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+<p>The above is just an example.  While it is certain that we pass the response on success, sometimes a) the response might be empty or b) throws an error that results in no response.  Here is a simple way to refactor this scenario</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre><span class="kd">type</span> <span class="nx">Response</span> <span class="p">{</span>
+		<span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">200</span><span class="dl">'</span> <span class="o">|</span> <span class="dl">'</span><span class="s1">400</span><span class="dl">'</span> <span class="o">|</span> <span class="dl">'</span><span class="s1">204</span><span class="dl">'</span><span class="p">,</span>
+		<span class="nx">data</span><span class="p">?:</span> <span class="nx">object</span><span class="p">,</span>
+		<span class="nx">error</span><span class="p">?:</span> <span class="nx">object</span>
+	<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">response</span><span class="p">:</span> <span class="nx">Response</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nf">getApiResponse</span><span class="p">()</span> <span class="p">:</span> <span class="nx">Response</span> <span class="p">{</span>
+		<span class="k">try</span> <span class="p">{</span>
+			
+			<span class="nx">response</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="c1">// code block to call an api and get response</span>
+			<span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span> <span class="p">?</span> <span class="mi">204</span> <span class="p">:</span> <span class="mi">200</span><span class="p">;</span>
+		<span class="p">}</span> <span class="nf">catch </span><span class="p">(</span><span class="nx">ex</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// throw or log exception</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>In the above snippet we have a strong validation for the status codes.  Even thought the example above has improved, we can still refactor such scenarios like this</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre>type Response {
+	status: '200' | '204',
+	data: object
+} | {
+	status: '400' | '500' | '404',
+	error: object
+}
+
+
+let response: Response;
+function getApiResponse() : Response {
+		try {
+			
+			response.data = // code block to call an api and get response
+			response.status = response.data ? 204 : 200;
+		} catch (ex) {
+			// throw or log exception
+		}
+		return response;
+}
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>or this can also be like below with <code class="language-plaintext highlighter-rouge">never</code> type.  <strong>never</strong> prevents us from using improper usage of types.</p>
+
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre><span class="kd">type</span> <span class="nx">Response</span> <span class="p">{</span>
+	<span class="nl">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">200</span><span class="dl">'</span> <span class="o">|</span> <span class="dl">'</span><span class="s1">204</span><span class="dl">'</span><span class="p">,</span>
+	<span class="nx">data</span><span class="p">:</span> <span class="nx">object</span><span class="p">,</span>
+	<span class="nx">error</span><span class="p">:</span> <span class="nx">never</span>
+<span class="p">}</span> <span class="o">|</span> <span class="p">{</span>
+	<span class="na">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">400</span><span class="dl">'</span> <span class="o">|</span> <span class="dl">'</span><span class="s1">500</span><span class="dl">'</span> <span class="o">|</span> <span class="dl">'</span><span class="s1">404</span><span class="dl">'</span><span class="p">,</span>
+	<span class="na">error</span><span class="p">:</span> <span class="nx">object</span><span class="p">,</span>
+	<span class="na">data</span><span class="p">:</span> <span class="nx">never</span>
+<span class="p">}</span>
+
+
+<span class="kd">let</span> <span class="nx">response</span><span class="p">:</span> <span class="nx">Response</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nf">getApiResponse</span><span class="p">()</span> <span class="p">:</span> <span class="nx">Response</span> <span class="p">{</span>
+		<span class="k">try</span> <span class="p">{</span>
+			
+			<span class="nx">response</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="c1">// code block to call an api and get response</span>
+			<span class="nx">response</span><span class="p">.</span><span class="nx">status</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span> <span class="p">?</span> <span class="mi">204</span> <span class="p">:</span> <span class="mi">200</span><span class="p">;</span>
+		<span class="p">}</span> <span class="nf">catch </span><span class="p">(</span><span class="nx">ex</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// throw or log exception</span>
+		<span class="p">}</span>
+		<span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+
+
+      </div>
+
+      <div class="post-tail-wrapper text-muted">
+
+        <!-- categories -->
+        
+        <div class="post-meta mb-3">
+          <i class="far fa-folder-open fa-fw mr-1"></i>
+          
+            <a href='/categories/typescript/'>typescript</a>,
+            <a href='/categories/refactoring/'>refactoring</a>
+        </div>
+        
+
+        <!-- tags -->
+        
+        <div class="post-tags">
+          <i class="fa fa-tags fa-fw mr-1"></i>
+          
+          <a href="/tags/typescript/"
+            class="post-tag no-text-decoration" >typescript</a>
+          
+          </div>
+        
+
+        <div class="post-tail-bottom
+          d-flex justify-content-between align-items-center mt-3 pt-5 pb-2">
+          
+          <div class="license-wrapper">
+            This post is licensed under
+            <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+            by the author.
+          </div>
+          
+
+          <!--
+ Post sharing snippet
+-->
+
+<div class="share-wrapper">
+  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-icons">
+    
+    
+
+    
+      
+        <a href="https://twitter.com/intent/tweet?text=Some Learnings on types - Krishnanand Sivaraj&url=http://localhost:4000/posts/better-ts-types/" data-toggle="tooltip" data-placement="top"
+          title="Twitter" target="_blank" rel="noopener" aria-label="Twitter">
+          <i class="fa-fw fab fa-twitter"></i>
+        </a>
+    
+      
+        <a href="https://www.facebook.com/sharer/sharer.php?title=Some Learnings on types - Krishnanand Sivaraj&u=http://localhost:4000/posts/better-ts-types/" data-toggle="tooltip" data-placement="top"
+          title="Facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fa-fw fab fa-facebook-square"></i>
+        </a>
+    
+      
+        <a href="https://telegram.me/share?text=Some Learnings on types - Krishnanand Sivaraj&url=http://localhost:4000/posts/better-ts-types/" data-toggle="tooltip" data-placement="top"
+          title="Telegram" target="_blank" rel="noopener" aria-label="Telegram">
+          <i class="fa-fw fab fa-telegram"></i>
+        </a>
+    
+
+    <i class="fa-fw fas fa-link small" onclick="copyLink()"
+        data-toggle="tooltip" data-placement="top" title="Copy link"></i>
+
+  </span>
+</div>
+
+
+        </div><!-- .post-tail-bottom -->
+
+      </div><!-- div.post-tail -->
+
+    </div> <!-- .post -->
+
+
+  </div> <!-- #post-wrapper -->
+
+  
+
+  
+
+  <!--
+  The Pannel on right side (Desktop views)
+-->
+
+<div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down">
+
+  <div class="access">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+    <div id="access-lastmod" class="post">
+      <span>Recent Update</span>
+      <ul class="post-content pl-0 pb-1 ml-1 mt-2">
+
+      
+        
+        
+        
+        <li><a href="/posts/ooad-intro/">Chapter 0 - OOA&D Introduction</a></li>
+      
+
+      </ul>
+    </div> <!-- #access-lastmod -->
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+
+
+  
+    <div id="access-tags">
+      <span>Trending Tags</span>
+      <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
+
+      
+        
+        <a class="post-tag" href="/tags/ooad/">ooad</a>
+      
+        
+        <a class="post-tag" href="/tags/typescript/">typescript</a>
+      
+
+      </div>
+    </div>
+  
+  </div> <!-- .access -->
+
+  
+    <!-- BS-toc.js will be loaded at medium priority -->
+    <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
+    <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
+      <span class="pl-3 pt-2 mb-2">Contents</span>
+      <nav id="toc" data-toggle="toc"></nav>
+    </div>
+  
+
+</div> <!-- #panel-wrapper -->
+
+
+</div> <!-- .row -->
+
+<div class="row">
+  <div class="col-12 col-lg-11 col-xl-8">
+    <div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4">
+
+    <!--
+ Recommend the other 3 posts according to the tags and categories of the current post,
+ if the number is not enough, use the other latest posts to supplement.
+-->
+
+<!-- The total size of related posts  -->
+
+
+<!-- An random integer that bigger than 0  -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy}  -->
+
+
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+<!-- Fill with the other newlest posts  -->
+
+
+
+
+  
+    
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
+    
+  
+    
+    
+      
+      
+        
+        
+        
+          
+
+
+
+
+
+  <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
+    <h3 class="pt-2 mt-1 mb-4 ml-1"
+      data-toc-skip>Further Reading</h3>
+    <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/iteration-and-testing/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago small"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  8, 2021
+  
+
+  <i class="unloaded">2021-05-08T23:15:00+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Chapter 8 - Iterating and testing</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Chapter 8 - Iterating and testing
+
+
+  The first step in writing good software is to make sure your application works like the customer expects and wants it to.
+  Customers don’t usually care about ...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/design-principles/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago small"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  8, 2021
+  
+
+  <i class="unloaded">2021-05-08T23:05:00+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Chapter 7 - Design Principles</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Chapter 7 : Design Principles
+
+
+  The Open-Closed Principle keeps your software reusable, but still flexible, by keeping classes open for extension but closed for modification.
+  With classes doing...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/architecture/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: /assets/js/_utils/timeage.js
+-->
+
+
+
+
+
+<span class="timeago small"
+  
+
+  
+   >
+
+  
+  
+
+  
+    May  8, 2021
+  
+
+  <i class="unloaded">2021-05-08T21:55:00+08:00</i>
+
+</span>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Chapter 6 - Architecture</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                Chapter 6 : Architecture
+
+
+  Architecture helps you turn all your diagrams, plans and feature lists into well-ordered application.
+  The features in your system that are most important to your proj...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+    </div> <!-- .card-deck -->
+  </div> <!-- #related-posts -->
+
+
+
+    <!--
+  Navigation buttons at the bottom of the post.
+-->
+
+<div class="post-navigation d-flex justify-content-between">
+  
+  <a href="/posts/iteration-and-testing/" class="btn btn-outline-primary"
+    prompt="Older">
+    <p>Chapter 8 - Iterating and testing</p>
+  </a>
+  
+
+  
+  <span class="btn btn-outline-primary disabled"
+    prompt="Newer">
+    <p>-</p>
+  </span>
+  
+
+</div>
+
+
+    
+      <!--
+  The Disqus lazy loading.
+  Powered by: <https://github.com/osvaldasvalutis/disqusLoader.js>
+-->
+
+<div id="disqus" class="pt-2 pb-2">
+  <p class="text-center text-muted small pb-5">
+    Comments powered by <a href="https://disqus.com/">Disqus</a>.
+  </p>
+</div>
+
+<script src="/assets/js/lib/jquery.disqusloader.min.js"></script>
+<script>
+  const options = {
+    scriptUrl: '//https-krishnanandsivaraj-github-io.disqus.com/embed.js',
+
+    disqusConfig: function() {
+      this.page.title = 'Some Learnings on types';
+      this.page.url = 'http://localhost:4000/posts/better-ts-types/';
+      this.page.identifier = '/posts/better-ts-types/';
+    }
+  };
+
+  $.disqusLoader('#disqus', options);
+</script>
+
+    
+
+    </div> <!-- #post-extend-wrapper -->
+
+  </div> <!-- .col-* -->
+
+</div> <!-- .row -->
